@@ -47,13 +47,14 @@ body {
     left: 0;
     right: 0;
     z-index: 1000;
-    background: rgba(2, 12, 27, 0.85);
-    backdrop-filter: blur(10px);
+    background: var(--primary);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
     transition: var(--transition);
 }
 
 .header.scrolled {
-    background: rgba(10, 25, 47, 0.95);
+    background: var(--primary);
     box-shadow: var(--shadow);
 }
 
@@ -72,22 +73,60 @@ body {
     gap: 32px;
 }
 
-.logo-placeholder {
-    font-size: 1.5rem;
-    font-weight: 700;
-    color: var(--white);
-    letter-spacing: 2px;
-    text-decoration: none;
-    transition: var(--transition);
+.logo-img {
+    height: 100px;
+    width: auto;
+    display: block;
+    filter: brightness(0) invert(1);
+    position: relative;
+    z-index: 1;
 }
 
-.logo-placeholder:hover {
-    color: var(--accent);
+.header .logo {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.logo-circle {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background: var(--primary);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.3s ease;
+    position: absolute;
+    left: -10px;
+    top: 65%;
+    transform: translateY(-30%);
+    overflow: visible;
+    box-shadow: 0 0 0 0px rgba(255, 255, 255, 0.08);
+}
+
+.logo-circle:hover {
+    background: var(--primary);
+}
+
+.logo-circle:hover {
+    background: var(--primary);
+}
+
+.header .logo .logo-img {
+    height: 100px;
+}
+
+.footer .logo-img {
+    height: 108px;
+    margin-bottom: 12px;
 }
 
 .nav-list {
     display: flex;
-    gap: 40px;
+    gap: 50px;
     list-style: none;
 }
 
@@ -1918,4 +1957,37 @@ section {
     .breadcrumb {
         flex-wrap: wrap;
     }
+}
+
+.scroll-top-btn {
+    position: fixed;
+    bottom: 32px;
+    right: 32px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: var(--accent);
+    color: var(--white);
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(20px);
+    transition: opacity 0.4s ease, visibility 0.4s ease, transform 0.4s ease, background 0.3s ease;
+    z-index: 999;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.scroll-top-btn.visible {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.scroll-top-btn:hover {
+    background: var(--accent-dark);
 }

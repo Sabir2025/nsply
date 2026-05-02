@@ -213,34 +213,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // Form handling
-    const quoteForm = document.getElementById('quote-form');
-    const quoteSuccess = document.getElementById('form-success');
-    const contactForm = document.getElementById('contact-form');
-    const contactSuccess = document.getElementById('contact-success');
-
-    quoteForm.addEventListener('submit', (e) => {
-        e.preventDefault();
-        quoteForm.style.display = 'none';
-        quoteSuccess.classList.add('show');
-        setTimeout(() => {
-            quoteForm.reset();
-            quoteForm.style.display = 'block';
-            quoteSuccess.classList.remove('show');
-        }, 3000);
-    });
-
-    contactForm.addEventListener('submit', (e) => {
-        e.preventDefault();
-        contactForm.style.display = 'none';
-        contactSuccess.classList.add('show');
-        setTimeout(() => {
-            contactForm.reset();
-            contactForm.style.display = 'block';
-            contactSuccess.classList.remove('show');
-        }, 3000);
-    });
-
     // Smooth scroll for anchor links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function(e) {
@@ -255,5 +227,20 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
             }
         });
+    });
+
+    // Scroll to top button
+    const scrollBtn = document.createElement('button');
+    scrollBtn.className = 'scroll-top-btn';
+    scrollBtn.innerHTML = '<i class="fa-solid fa-chevron-up"></i>';
+    scrollBtn.setAttribute('aria-label', 'Scroll to top');
+    document.body.appendChild(scrollBtn);
+
+    scrollBtn.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    window.addEventListener('scroll', () => {
+        scrollBtn.classList.toggle('visible', window.scrollY > window.innerHeight);
     });
 });
