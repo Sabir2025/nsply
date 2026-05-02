@@ -244,6 +244,8 @@ document.addEventListener('DOMContentLoaded', () => {
     // Smooth scroll for anchor links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function(e) {
+            const href = this.getAttribute('href');
+            if (href === '#' || href.length <= 1) return;
             e.preventDefault();
             const target = document.querySelector(this.getAttribute('href'));
             if (target) {
@@ -253,41 +255,5 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
             }
         });
-    });
-
-    // Terms and Conditions Modal
-    const termsModal = document.getElementById('terms-modal');
-    const termsOpen = document.getElementById('terms-open');
-    const termsClose = document.getElementById('terms-close');
-
-    if (termsOpen) {
-        termsOpen.addEventListener('click', (e) => {
-            e.preventDefault();
-            termsModal.classList.add('active');
-            document.body.style.overflow = 'hidden';
-        });
-    }
-
-    if (termsClose) {
-        termsClose.addEventListener('click', () => {
-            termsModal.classList.remove('active');
-            document.body.style.overflow = '';
-        });
-    }
-
-    if (termsModal) {
-        termsModal.addEventListener('click', (e) => {
-            if (e.target === termsModal) {
-                termsModal.classList.remove('active');
-                document.body.style.overflow = '';
-            }
-        });
-    }
-
-    document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && termsModal.classList.contains('active')) {
-            termsModal.classList.remove('active');
-            document.body.style.overflow = '';
-        }
     });
 });
