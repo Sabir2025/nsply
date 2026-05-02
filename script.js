@@ -113,14 +113,17 @@ document.addEventListener('DOMContentLoaded', () => {
             filterBtns.forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
             const filter = btn.dataset.filter;
-            filterCatalog(filter, searchInput.value.toLowerCase());
+            const searchTerm = searchInput ? searchInput.value.toLowerCase() : '';
+            filterCatalog(filter, searchTerm);
         });
     });
 
-    searchInput.addEventListener('input', () => {
-        const activeFilter = document.querySelector('.filter-btn.active').dataset.filter;
-        filterCatalog(activeFilter, searchInput.value.toLowerCase());
-    });
+    if (searchInput) {
+        searchInput.addEventListener('input', () => {
+            const activeFilter = document.querySelector('.filter-btn.active').dataset.filter;
+            filterCatalog(activeFilter, searchInput.value.toLowerCase());
+        });
+    }
 
     function filterCatalog(category, searchTerm) {
         catalogItems.forEach(item => {
